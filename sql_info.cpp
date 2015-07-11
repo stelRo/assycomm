@@ -121,15 +121,12 @@ void sql_requests::set_post_info() {
     cout << "Post Title: ";
     getline(cin,post_title);
     cin.ignore();
-    cout << endl;
     cout << "Comment Status, 1. for OPEN, 0. for Close: ";
     cin >> comment_status;
     cin.ignore();
-    cout << endl;
     cout << "Post Name: ";
     cin >> post_name;
     cin.ignore();
-    cout << endl;
     cout << "Post Content's[ENTER TO END]: ";
     asc.read_text();
     cin.ignore();
