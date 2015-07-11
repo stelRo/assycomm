@@ -64,8 +64,8 @@ private:
 
 	void removeComment(string &line) const
 	{
-		if (line.find('#') != line.npos)
-			line.erase(line.find('#'));
+		if (line.find('/') != line.npos)
+			line.erase(line.find('/'));
 	}
 
 	bool onlyWhitespace(const string &line) const
