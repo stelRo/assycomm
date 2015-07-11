@@ -35,7 +35,6 @@ int main(int argc, char const **argv)
         vector<string> args(argv, argv+argc);
 	string login_name;
 	string login_pass;
-        bool ena;
         
         for (size_t i = 1; i < args.size(); ++i) {
             
