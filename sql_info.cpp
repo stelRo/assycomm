@@ -67,7 +67,7 @@ long long sql_requests::sql_get_id() {
 
 bool sql_requests::sql_connect() {
 
-    ConfigFile cfg("config.cfg");
+    ConfigFile cfg("config.js");
     string url = cfg.getValueOfKey<string>("addr_url");
     string db_name = cfg.getValueOfKey<string>("db_name");
 
