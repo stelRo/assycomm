@@ -133,7 +133,7 @@ void sql_requests::set_post_info() {
     cout << endl;
 
     asc.user_define(post_title,comment_status,post_name);
-    informations = asc.return_values("config.cfg");
+    informations = asc.return_values("config.js");
     
 }
 
