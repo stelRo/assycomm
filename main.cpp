@@ -22,14 +22,27 @@
 
 using namespace std;
 
+typedef struct {
 
-int main(int argc, char const *argv[])
+    bool POST_INFO;
+
+}param_info;
+
+
+int main(int argc, char const **argv)
 {	
-    
+        param_info param;
         vector<string> args(argv, argv+argc);
 	string login_name;
 	string login_pass;
-
+        bool ena;
+        
+        for (size_t i = 1; i < args.size(); ++i) {
+            
+            if(args[i] == "-p")
+                param.POST_INFO = true;
+        }
+        
 	cout << "mySQL name: ";
 	cin >> login_name;
 	cout << "Password: ";
@@ -49,17 +62,11 @@ int main(int argc, char const *argv[])
 	sql_info.set_post_info();
 
 	sql_info.sql_query();
-
-
-  	for (size_t i = 1; i < args.size(); ++i) {
-
-            if (args[i] == "-p") /*shows the queries */
-                sql_info.print_post_info();
-            else {
-                cout << "Argument: " << argv[i] << " was not found!" << endl;
-                exit(1);
-            }
-        }
+        
+        //If true, post post info querys in terminal
+        if(param.POST_INFO)
+    	    sql_info.print_post_info();
+         
 
         //cout << "ID: " << stcl.sqlGetId() << endl;
 	
