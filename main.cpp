@@ -28,10 +28,11 @@ typedef struct {
 
 }param_info;
 
-
 int main(int argc, char const **argv)
 {	
         param_info param;
+    
+        string get_command;
         vector<string> args(argv, argv+argc);
 	string login_name;
 	string login_pass;
@@ -41,10 +42,11 @@ int main(int argc, char const **argv)
             if(args[i] == "-p")
                 param.POST_INFO = true;
         }
-        
-	cout << "mySQL name: ";
+        cout << endl;
+        cout << "[-].. mySQL info " << endl;
+	cout << "[+].. username: ";
 	cin >> login_name;
-	cout << "Password: ";
+	cout << "[+].. password: ";
 	cin >> login_pass;
 	cin.ignore();
 	cout << endl;        
@@ -52,22 +54,39 @@ int main(int argc, char const **argv)
         sql_requests sql_info(login_name,login_pass);
 
         if(sql_info.sql_connect() != 0)
-            cout << "Connected.." << "\n";
+            cout << "[-].. connected successfully! " << endl;
         else
-            cout << "Faild to Connect.. " << "\n";
+            cout << "[-].. faild to connect.. " << endl;
         
         //stcl.sqlConnect();
-        cout << "ID : " << sql_info.sql_get_id() << endl;
-	sql_info.set_post_info();
+        //cout << "ID : " << sql_info.sql_get_id() << endl;
 
-	sql_info.sql_query();
         
-        //If true, post post info querys in terminal
+        for( ; ; ) {
+            
+            cout << "[operation]: ";
+            cin >> get_command;
+            cin.ignore();
+
+            if ( get_command == "exit" )
+                break;
+             if ( get_command == "post" ) {
+                sql_info.set_post_info();
+                if(sql_info.sql_query())
+                    cout << "[-].. posted successfully! " << endl;
+
+            }
+            else
+                cout << "[~].. command not found ! " << endl;
+        
+        }
+
+        //If true, print post info querys in terminal
         if(param.POST_INFO)
     	    sql_info.print_post_info();
          
 
-        //cout << "ID: " << stcl.sqlGetId() << endl;
+        cout << "ID: " << sql_info.sql_get_id() << endl;
 	
 	return EXIT_SUCCESS;
 	
