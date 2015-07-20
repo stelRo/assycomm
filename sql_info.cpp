@@ -32,8 +32,8 @@ using namespace sql;
 
 sql_requests::sql_requests(string username, string password) {
 
-    sql_name = username;
-    sql_pass = password;
+    this->sql_name = username;
+    this->sql_pass = password;
 }
 
 long long sql_requests::sql_get_id() {
@@ -135,7 +135,7 @@ void sql_requests::set_post_info() {
     cout << endl;
 
     asc.user_define(post_title,comment_status,post_name);
-    informations = asc.return_values("config.js");
+    this->informations = asc.return_values("config.js");
     
 }
 
