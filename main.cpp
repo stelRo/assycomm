@@ -31,6 +31,16 @@ typedef struct {
 
 int main(int argc, char const **argv)
 {	
+       
+    
+       /*Colors Modifiers */ 
+        Color::Modifier c_red(Color::FG_RED);
+        Color::Modifier c_def(Color::FG_DEFAULT);
+        Color::Modifier c_yel(Color::FG_YELLOW);
+        Color::Modifier c_gre(Color::FG_GREEN);
+        Color::Modifier c_bol(Color::FG_BOLD);
+        /* --------------- */ 
+
         param_info param;
         getHelp help_lib;
 
@@ -45,20 +55,23 @@ int main(int argc, char const **argv)
                 param.POST_INFO = true;
         }
         cout << endl;
-        cout << "[-].. mySQL info " << endl;
-	cout << "[+].. username: ";
+        cout << c_gre << "[~]" << c_def << ".. mySQL Loing " << endl;
+	cout << c_yel << "[+]" << c_def << ".. username: ";
 	cin >> login_name;
-	cout << "[+].. password: ";
+	cout << c_yel << "[+]" << c_def << ".. password: ";
 	cin >> login_pass;
 	cin.ignore();
 	cout << endl;        
 	
         sql_requests sql_info(login_name,login_pass);
 
-        if(sql_info.sql_connect() != 0)
-            cout << "[-].. connected successfully! " << endl;
+        if(sql_info.sql_connect() != 0) {
+            cout << c_gre << "[~]" << c_def << ".. connected successfully! " << endl;
+            cout << "\n";
+        }
+
         else
-            cout << "[-].. faild to connect.. " << endl;
+            cout << c_red << "[-]" << c_def << ".. faild to connect.. " << endl;
         
         //stcl.sqlConnect();
         //cout << "ID : " << sql_info.sql_get_id() << endl;
@@ -66,7 +79,7 @@ int main(int argc, char const **argv)
         
         for( ; ; ) {
             
-            cout << "[operation]: ";
+            cout << "[operation]:" << " ";
             cin >> get_command;
             cin.ignore();
 
