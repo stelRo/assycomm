@@ -19,6 +19,7 @@
 #include "sql_info.h"
 #include "post_info.h"
 #include "conflib.h"
+#include "help_lib.h"
 
 using namespace std;
 
@@ -31,7 +32,8 @@ typedef struct {
 int main(int argc, char const **argv)
 {	
         param_info param;
-    
+        getHelp help_lib;
+
         string get_command;
         vector<string> args(argv, argv+argc);
 	string login_name;
@@ -70,7 +72,10 @@ int main(int argc, char const **argv)
 
             if ( get_command == "exit" )
                 break;
-             if ( get_command == "post" ) {
+            if (get_command == "help" )
+                help_lib.show_help_msg();
+
+            if ( get_command == "post" ) {
                 sql_info.set_post_info();
                 if(sql_info.sql_query())
                     cout << "[-].. posted successfully! " << endl;
