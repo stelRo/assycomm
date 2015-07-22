@@ -31,7 +31,7 @@ class assycom {
         string return_values(string file_path);
         string return_system_date();
         void read_text();
-        void user_define(string title, bool comment_status, string post_name);
+        void user_define(string title, bool comment_status, string get_post_name);
        
 };
 

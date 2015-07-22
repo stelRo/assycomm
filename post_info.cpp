@@ -50,6 +50,7 @@ string assycom::return_values(string file_path) {
 	systemDateAndTime = return_system_date();
 
 	string post_com;
+        string ping_status;
 
 	//All Cals with Values from config.cfg file for sql query! 
 	string post_author = cfg.getValueOfKey<string>("post_author");
@@ -58,7 +59,7 @@ string assycom::return_values(string file_path) {
 	string post_excerpt = cfg.getValueOfKey<string>("post_excerpt");
 	string post_status = cfg.getValueOfKey<string>("post_status");
 	string comment_status = cfg.getValueOfKey<string>("comment_status");
-	string ping_status = cfg.getValueOfKey<string>("ping_status");
+	int get_ping_status = cfg.getValueOfKey<int>("ping_status");
 	string post_password = cfg.getValueOfKey<string>("post_password");
 	string to_ping = cfg.getValueOfKey<string>("to_ping");
 	string pinged = cfg.getValueOfKey<string>("pinged");
@@ -116,20 +117,25 @@ string assycom::return_values(string file_path) {
 	else					//false
 		post_com = "close";
 
-//Command for mySql Service query, to insert values into the table
+        if(get_ping_status)
+                ping_status = "open";
+        else
+                ping_status = "close";
+
+        //Command for mySql Service query, to insert values into the table
 	command = 
 		defSta + '(' + post_author + c + q + post_date + q + c + q + post_date_gmt + q + c + q 
 		 + *post_content + q + c + q + post_title + q + c + q + post_status + q + c + q + post_com 
 		+ q + c + q + ping_status + q + c + q + post_name  + q + c + q + post_modified  + q + c + q + 
-		 post_modified_gmt + q + c + q + post_parent  + q + c + q + guid  + q + c +  menu_order + c + q + 
+		 post_modified_gmt + q + c + q + post_parent  + q + c + q + guid + post_name + q + c +  menu_order + c + q + 
 		post_type  + q + c + comment_count +')';
 		
 		return command;
 }
 
-void assycom::user_define(string title,bool comment_status,string post_name) {
+void assycom::user_define(string title,bool comment_status,string get_post_name) {
 	post_title = title;
-	post_name = post_name;
+	post_name = get_post_name;
 	post_comment_status = comment_status;
 }
 string assycom::return_system_date(void) {
