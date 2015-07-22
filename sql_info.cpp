@@ -26,6 +26,7 @@
 #include "post_info.h"
 #include "sql_info.h"
 #include "conflib.h"
+#include "help_lib.h"
 
 using namespace std;
 using namespace sql;
@@ -67,7 +68,7 @@ long long sql_requests::sql_get_id() {
 
 bool sql_requests::sql_connect() {
 
-    ConfigFile cfg("config.js");
+    ConfigFile cfg("config.assy");
     string url = cfg.getValueOfKey<string>("addr_url");
     string db_name = cfg.getValueOfKey<string>("db_name");
 
@@ -112,30 +113,39 @@ bool sql_requests::sql_query() {
 }
 
 void sql_requests::set_post_info() {
+
+    /*Colors Modifiers */ 
+    Color::Modifier c_red(Color::FG_RED);
+    Color::Modifier c_def(Color::FG_DEFAULT);
+    Color::Modifier c_yel(Color::FG_YELLOW);
+    Color::Modifier c_gre(Color::FG_GREEN);
+    Color::Modifier c_bol(Color::FG_BOLD);
+    /* --------------- */ 
+
     
     assycom asc; //AssyCom class
     string post_name, post_title;
     bool comment_status;
 
-    cout << "[-].. post informations : " << endl;
+    cout  << "[-]" << ".. post informations : " << endl;
     cout << endl;
     /* ------ Get User Informations ------- */
-    cout << "[+].. post Title: ";
+    cout <<  "[+]" << ".. post Title: ";
     getline(cin,post_title);
     cin.ignore();
-    cout << "[+].. comment Status, 1. for OPEN, 0. for Close: ";
+    cout << "[+]" << ".. comment Status, 1. for OPEN, 0. for Close: " <<;
     cin >> comment_status;
     cin.ignore();
-    cout << "[+].. post Name: ";
+    cout <<  "[+]" << ".. post Name: " <<;
     cin >> post_name;
     cin.ignore();
-    cout << "[+].. post Content's[ENTER TO END]: ";
+    cout << "[+]" << ".. post Content's[ENTER TO END]: " <<;
     asc.read_text();
     cin.ignore();
     cout << endl;
 
     asc.user_define(post_title,comment_status,post_name);
-    this->informations = asc.return_values("config.js");
+    this->informations = asc.return_values("config.assy");
     
 }
 
