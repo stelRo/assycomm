@@ -74,7 +74,7 @@ int main(int argc, char const **argv)
             cout << c_red << "[-]" << c_def << ".. faild to connect.. " << endl;
         
         //stcl.sqlConnect();
-        //cout << "ID : " << sql_info.sql_get_id() << endl;
+        cout << "ID : " << sql_info.sql_get_id() << endl;
 
         
         for( ; ; ) {
@@ -104,7 +104,6 @@ int main(int argc, char const **argv)
     	    sql_info.print_post_info();
          
 
-        cout << "ID: " << sql_info.sql_get_id() << endl;
 	
 	return EXIT_SUCCESS;
 	
