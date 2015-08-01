@@ -133,13 +133,13 @@ void sql_requests::set_post_info() {
     cout <<  "[+]" << ".. post Title: ";
     getline(cin,post_title);
     cin.ignore();
-    cout << "[+]" << ".. comment Status, 1. for OPEN, 0. for Close: " <<;
+    cout << "[+]" << ".. comment Status, 1. for OPEN, 0. for Close: ";
     cin >> comment_status;
     cin.ignore();
-    cout <<  "[+]" << ".. post Name: " <<;
+    cout <<  "[+]" << ".. post Name: ";
     cin >> post_name;
     cin.ignore();
-    cout << "[+]" << ".. post Content's[ENTER TO END]: " <<;
+    cout << "[+]" << ".. post Content's[ENTER TO END]: ";
     asc.read_text();
     cin.ignore();
     cout << endl;
